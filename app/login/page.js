@@ -12,7 +12,7 @@ export default function Page() {
     e.preventDefault();
   
     try {
-      const res = await fetch('https://backend-ivory-omega.vercel.app/api/login', {
+      const res = await fetch('https://backend-self-six.vercel.app/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export default function Page() {
   
         // เปลี่ยนไปยังหน้า http://localhost:3001/ หลังจากล็อกอินสำเร็จ โดยไม่ต้องยืนยัน
         setTimeout(() => {
-          window.location.href = 'https://frontend-ebon-omega-19.vercel.app/';
+          window.location.href = 'https://frontend060.vercel.app/';
         }, 1000); // รอ 1 วินาทีก่อนเปลี่ยนหน้า
       } else {
         setMessage(result.error);

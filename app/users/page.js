@@ -32,7 +32,7 @@ export default function Page() {
 
     async function getUsers() {
       try {
-        const res = await fetch('https://backend-ivory-omega.vercel.app/api/users');
+        const res = await fetch('https://backend-self-six.vercel.app/api/users');
         if (!res.ok) {
           console.error('Failed to fetch data');
           return;
@@ -51,7 +51,7 @@ export default function Page() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`https://backend-ivory-omega.vercel.app/api/users/${id}`, {
+      const res = await fetch(`https://backend-self-six.vercel.app/api/users/${id}`, {
         method: 'DELETE',
         headers: {
           Accept: 'application/json',
