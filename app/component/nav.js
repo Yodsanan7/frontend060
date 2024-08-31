@@ -1,27 +1,86 @@
-import Link from "next/link";
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import styles from './Nav.module.css';
 
 export default function Nav() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+      const user = JSON.parse(localStorage.getItem('user')); // Assume user data is stored here
+      if (user) {
+        setUsername(user.username);
+      }
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user'); // Remove user data
+    setIsLoggedIn(false);
+    setUsername('');
+    window.location.href = '/login'; // Redirect to login page
+  };
+
   return (
-    <>
-      <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-        <div className="col-md-3 mb-2 mb-md-0">
-          <a href="/" className="d-inline-flex link-body-emphasis text-decoration-none">
-            <img src="/img/w.png" alt="Logo" width="40" height="40" className="me-2" />
-          </a>
-        </div>
-
-        <ul className="nav col-12 col-md-auto mb-2 justify-content-end mb-md-0">
-          <li><a href="/" className="nav-link px-2 mx-3 link-secondary">Home</a></li>
-          <li><Link href="/about" className="nav-link px-2 mx-3">About</Link></li>
-          <li><Link href="/Service" className="nav-link px-2 mx-3">Service</Link></li>
-          <li><Link href="/Contact" className="nav-link px-2 mx-3">Contact</Link></li>
+    <nav className={`navbar navbar-expand-lg ${styles.navbar}`}>
+      <Link href="/" className={`navbar-brand ${styles.navbarBrand}`}>
+        <img src="/img/2.png" className={styles.logo} alt="Logo" />
+      </Link>
+      <button
+        className={`navbar-toggler ${styles.navbarToggler}`}
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className={`navbar-toggler-icon ${styles.togglerIcon}`}></span>
+      </button>
+      <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul className="navbar-nav mb-2 mb-lg-0 d-flex justify-content-center">
+          <li className="nav-item mx-2">
+            <Link href="/" className="nav-link fs-5 text-dark">Home</Link>
+          </li>
+          <li className="nav-item mx-2">
+            <Link href="/about" className="nav-link fs-5 text-dark">About</Link>
+          </li>
+          <li className="nav-item mx-2">
+            <Link href="/Service" className="nav-link fs-5 text-dark">Services</Link>
+          </li>
+          
+          <li className="nav-item mx-2">
+            <Link href="/Contact" className="nav-link fs-5 text-dark">Contact</Link>
+          </li>
+          {isLoggedIn && (
+            <li className="nav-item mx-2">
+              <Link href="/users" className="nav-link fs-5 text-dark">Users</Link>
+            </li>
+          )}
         </ul>
+      </div>
 
-        <div className="col-md-3 text-end">
-          <button type="button" className="btn btn-outline-primary me-2">Login</button>
-          <button type="button" className="btn btn-primary">Sign-up</button>
-        </div>
-      </header>
-    </>
+      <div className={styles.buttons}>
+        {isLoggedIn ? (
+          <div className={styles.navbarTextContainer}>
+            <span className={`navbar-text ${styles.navbarText}`}>Welcome, {username}</span>
+            <button onClick={handleLogout} className="btn btn-outline-danger">
+              Logout
+            </button>
+          </div>
+        ) : (
+          <>
+            <Link href="/login" className="btn btn-outline-primary">Login</Link>
+            <Link href="/signup" className="btn btn-outline-primary">Sign Up</Link>
+          </>
+        )}
+      </div>
+    </nav>
   );
 }

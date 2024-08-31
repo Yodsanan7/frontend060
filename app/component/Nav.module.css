@@ -1,0 +1,113 @@
+/* /app/components/Nav.module.css */
+
+.navbar {
+  justify-content: space-between; /* ให้โลโก้และเนื้อหาอื่นๆ กระจายออกไปทั้งสองด้าน */
+  border-bottom: 2px solid #eaeaea; /* เพิ่มเส้นขอบด้านล่าง */
+  margin-bottom: 20px;
+  background-color: #ffffff; /* พื้นหลังสีขาว */
+  padding: 10px 20px; /* เพิ่ม padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้กับ Navbar */
+  border-radius: 8px; /* เพิ่มกรอบของ Navbar */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* เพิ่ม transition เมื่อเปลี่ยนเงาและการเคลื่อนไหว */
+}
+
+.navbar:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* เพิ่มเงาเมื่อโฮเวอร์ที่ Navbar */
+  transform: translateY(-2px); /* เลื่อน Navbar ลงเล็กน้อยเมื่อโฮเวอร์ */
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center; /* จัดกลางในแนวตั้ง */
+}
+
+.navbar-toggler {
+  border: none; /* ลบขอบของปุ่ม toggler */
+}
+
+.navbar-toggler-icon {
+  background-image: url('/path/to/your/toggler-icon.svg'); /* ใช้ไอคอนของคุณ */
+}
+
+.navbar-collapse {
+  display: flex;
+  justify-content: center; /* จัดกลางในแนวนอน */
+  flex-grow: 1; /* ทำให้ Navbar Collapse ขยายเต็มที่ */
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center; /* จัดกลางในแนวตั้ง */
+  justify-content: center; /* จัดกลางในแนวนอน */
+  margin: 0; /* ลบ margin */
+}
+
+.nav-link {
+  color: #333;
+  margin: 0 15px; /* ระยะห่างระหว่างลิงก์ */
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease; /* เพิ่ม transition เมื่อเปลี่ยนสีของลิงก์ */
+}
+
+.nav-link:hover {
+  color: #007bff; /* เปลี่ยนสีของลิงก์เมื่อโฮเวอร์ */
+}
+
+.buttons {
+  display: flex;
+  align-items: center; /* จัดกลางในแนวตั้ง */
+}
+
+.navbarTextContainer {
+  display: flex; /* ใช้ Flexbox */
+  align-items: center; /* จัดกลางในแนวตั้ง */
+  padding: 5px 15px; /* เพิ่ม padding */
+  border: 2px solid #007bff; /* กรอบสีน้ำเงิน */
+  border-radius: 25px; /* มุมโค้งมน */
+  background-color: #f8f9fa; /* พื้นหลังสีอ่อน */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* เงา */
+  margin-right: 20px; /* ระยะห่างจากปุ่ม Logout */
+}
+
+.navbarText {
+  font-size: 1.2rem; /* ขนาดตัวอักษร */
+  font-weight: bold; /* น้ำหนักตัวอักษร */
+  color: #007bff; /* สีข้อความ */
+  margin-right: 15px; /* ระยะห่างระหว่างข้อความกับปุ่ม Logout */
+}
+
+.btn-outline-danger {
+  border-radius: 20px; /* มุมโค้งมน */
+  padding: 10px 20px; /* ขนาดปุ่ม */
+  font-size: 1rem; /* ขนาดตัวอักษร */
+  font-weight: 500; /* น้ำหนักตัวอักษร */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+.logo {
+  max-width: 100px; /* ปรับขนาดความกว้างสูงสุดของโลโก้ */
+  height: auto; /* ความสูงจะปรับอัตโนมัติเพื่อรักษาสัดส่วน */
+  margin-right: 60px;
+}
+.nav-link {
+  color: #333;
+  margin: 0 15px; /* ระยะห่างระหว่างลิงก์ */
+  text-decoration: none;
+  font-size: 100; /* ขนาดตัวอักษรเพิ่มขึ้น */
+  font-weight: 600; /* ทำให้ตัวอักษรหนาขึ้น */
+  transition: color 0.3s ease; /* เพิ่ม transition เมื่อเปลี่ยนสีของลิงก์ */
+}
+
+.nav-link:hover {
+  color: #007bff; /* เปลี่ยนสีของลิงก์เมื่อโฮเวอร์ */
+}
