@@ -9,7 +9,7 @@ const [items, setItems] = useState([]);
 useEffect(() => {
     async function getUsers() {
       try {
-        const res = await fetch(`https://backend-self-six.vercel.app/api/users/${id}`);
+        const res = await fetch(`https://backend-zeta-navy.vercel.app//api/users/${id}`);
         if (!res.ok) {
           console.error('Failed to fetch data');
           return;
@@ -35,7 +35,7 @@ useEffect(() => {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('https://backend-self-six.vercel.app/api/users', {
+    const res = await fetch('https://backend-zeta-navy.vercel.app//api/users', {
       method: 'PUT',
       headers: {
         Accept : 'application/json',
