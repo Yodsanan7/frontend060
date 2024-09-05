@@ -1,5 +1,5 @@
 import Navbar from '/app/component/nav';
-
+//asasa
 export default function About() {
     return (
       <>
