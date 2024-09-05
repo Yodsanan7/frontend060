@@ -12,7 +12,7 @@ export default function Page() {
     e.preventDefault();
   
     try {
-      const res = await fetch('https://backend-self-six.vercel.app/api/login', {
+      const res = await fetch('https://backend-zeta-navy.vercel.app//api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
