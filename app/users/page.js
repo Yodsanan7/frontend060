@@ -1,12 +1,35 @@
+//s
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation'; // For redirection
 
 export default function Page() {
   const [items, setItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const [loading, setLoading] = useState(true); // State to handle loading
+  const router = useRouter(); // Hook for navigation
 
   useEffect(() => {
+    async function checkAuthentication() {
+      // Check login status by looking for token in local storage
+      const token = localStorage.getItem('token');
+      if (token) {
+        setIsLoggedIn(true);
+        setLoading(false);
+      } else {
+        setIsLoggedIn(false);
+        setLoading(false);
+        router.push('/signup'); // Redirect to signup page if not authenticated
+      }
+    }
+
+    checkAuthentication();
+  }, [router]);
+
+  useEffect(() => {
+    if (!isLoggedIn) return; // Exit if not logged in
+
     async function getUsers() {
       try {
         const res = await fetch('https://backend-zeta-navy.vercel.app/api/users');
@@ -16,7 +39,6 @@ export default function Page() {
         }
         const data = await res.json();
         setItems(data);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -25,7 +47,7 @@ export default function Page() {
     getUsers();
     const interval = setInterval(getUsers, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isLoggedIn]);
 
   const handleDelete = async (id) => {
     try {
@@ -38,11 +60,13 @@ export default function Page() {
       const result = await res.json();
       console.log(result);
     } catch (error) {
-      console.error('Error deleting user:', error);
+      console.error('Error fetching data:', error);
     }
   };
 
-  if (loading) return <p>Loading...</p>; // Show loading state while fetching data
+  if (loading) return <p>Loading...</p>; // Show loading state while checking authentication
+
+  if (!isLoggedIn) return null; // Optionally return null or redirect if not logged in
 
   return (
     <>
